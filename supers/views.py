@@ -10,6 +10,8 @@ from .models import Super
 @api_view(['GET', 'POST'])
 def supers_list(request):
     if request.method == 'GET':
+        super_type_name = request.query_params.get('super_type')
+        print(super_type_name)
         supers = Super.objects.all()
         serializer = SuperSerializer(supers, many=True) 
         return Response(serializer.data)
